@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+<head><title>Crop Recommender</title></head>
+<body>
+  <h1>Crop Recommendation</h1>
+  {% if model_info.error %}
+    <p style="color:darkred">Model load error: {{ model_info.error }}</p>
+  {% else %}
+    <p>Model detected: {{ model_info.repr }}</p>
+  {% endif %}
+  <form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Recommend</button>
+  </form>
+</body>
+</html>

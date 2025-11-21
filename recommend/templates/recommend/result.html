@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head><title>Result</title></head>
+<body>
+  <h1>Recommendation</h1>
+  {% if result.error %}
+    <p style="color:red">{{ result.error }}</p>
+  {% else %}
+    {% if result.top_crop %}
+      <p><strong>Top crop:</strong> {{ result.top_crop }}</p>
+      <h3>Scores</h3>
+      <ul>
+        {% for crop, score in result.scores.items %}
+          <li>{{ crop }} — {{ score }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p><strong>Prediction:</strong> {{ result.prediction }}</p>
+    {% endif %}
+  {% endif %}
+
+  <h3>Input</h3>
+  <ul>
+    {% for k,v in input.items %}
+      <li>{{ k }} : {{ v }}</li>
+    {% endfor %}
+  </ul>
+
+  <a href="{% url 'home' %}">Back</a>
+</body>
+</html>
